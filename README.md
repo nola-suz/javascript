@@ -1,13 +1,15 @@
 点や線などが描画できるツールです(chromeのみ)
 
 
- 使い方
+使い方
+
 1. chromeで http://nola_suz.github.io/javascript にアクセスします．
 2. JavaScriptコンソールを開きます.(macなら Alt + Commond + j)
 3. コンソールにdot(1,1)とか打ち込みます．
 4. 終わり
 
- 機能一覧
+機能一覧
+
 1. dot(x,y) : (x,y)に点を描画する
 2. dot_seq([x1,x2,...,xn],[y1,y2,...,yn]) : 複数の点を描画する
 3. circle(x,y,r) : (x,y)を中心に半径rの円を描画する
