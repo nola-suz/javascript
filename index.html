@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Graph tool</title>
+<!--キャンバスの背景色／枠線を指定（3）-->
+<style>
+#cv {
+  background-color: #FFF;
+  border: 1px solid black;
+}
+</style>
+<script>
+//軸と描画範囲(※キャンバスの範囲ではない)
+var x_axis = 200;
+var y_axis = 200;
+var height = 1600;
+var width  = 1600;
+var scale  = 100.0; // 100 = 1倍
+//スケールを設定(x倍)
+function set_scale(x){
+  scale = 100.0 * x;
+  console.log("scale is " + x);
+}
+//点を描画
+function dot(x,y,col){
+  if(typeof col === 'undefined') col='black';
+  window.addEventListener('DOMContentLoaded',_circle(x * scale,y * scale ,5,true,col));
+}
+//複数の点を描画
+function dot_seq(x,y,col){ 
+  if(typeof col === 'undefined') col='black';
+  for(var i=0;i<x.length;i++){
+    window.addEventListener('DOMContentLoaded',_circle(x[i] * scale,y[i] * scale,5,true,col));  
+  }
+}
+//円を描画
+function circle(x,y,r,col){
+  if(typeof col === 'undefined') col='black';
+  window.addEventListener('DOMContentLoaded',_circle(x * scale,y * scale,r * scale,false,col));  
+}
+//線を描画
+function line(x1,y1,x2,y2,col){
+  if(typeof col === 'undefined') col='black';
+  window.addEventListener('DOMContentLoaded',_line(x1 * scale,y1 * scale,x2 * scale,y2 * scale,col));  
+}
+
+//-----------------内部関数-------------------//
+//座標を描画
+//x,y:座標
+function _position(x,y,c){
+  c.fillText(String(x/scale), x + x_axis - 10, height - y_axis + 20, 30);
+  c.fillText(String(y/scale), x_axis - 30, height - y_axis - y - 10, 30);
+}
+
+//x,y:座標, r:半径, f:塗りつぶすか, col:色 
+function _circle(x,y,r,f,col) {
+  var cv = document.querySelector('#cv');
+  var c = cv.getContext('2d');
+  c.globalAlpha = 1;
+  c.strokeStyle = col;
+  c.fillStyle = col;
+  c.beginPath();
+  c.arc(x + x_axis, height - y_axis - y, r, 0, 2 * Math.PI, false);
+  if(f) c.fill();
+  else c.stroke();
+  _position(x,y,c);
+}
+//x1,y1:開始座標, x2,y2:終了座標, col:色 
+function _line(x1,y1,x2,y2,col){
+  var cv = document.querySelector('#cv');
+  var c = cv.getContext('2d');
+  c.globalAlpha = 1;
+  c.strokeStyle = col;
+  c.beginPath();
+  c.moveTo(x1 + x_axis, height - y_axis - y1);
+  c.lineTo(x2 + x_axis, height - y_axis - y2);
+  c.stroke();
+  _position(x1,y1,c);
+  _position(x2,y2,c);
+}
+function _first_init(){
+  var cv = document.querySelector('#cv');
+  var c = cv.getContext('2d');
+  c.strokeStyle = 'Red';
+  c.globalAlpha = 1;
+  c.beginPath();
+  c.moveTo(x_axis,0);
+  c.lineTo(x_axis,height);
+  c.stroke();
+  c.beginPath();
+  c.moveTo(0,height - y_axis);
+  c.lineTo(width,height - y_axis);
+  c.stroke();
+  c.fillStyle = "red";
+  c.font = "30px 'ＭＳ ゴシック'";
+  c.textAlign = "left";
+  c.textBaseline = "top";
+
+  c.fillText("y", x_axis - 30, 10, 20);
+  c.fillText("x", width - 20, height - y_axis + 20, 20);
+  c.fillText("O", x_axis - 30, height - y_axis + 20, 20);
+  c.fillStyle = "blue";
+  c.fillText("コンソールを開く(chrome) : Alt + Command + j", width + 300, height / 2 - 300, 1000);
+  c.fillText("dot(x,y)", width - 300, 20, 1000);
+  c.fillText("dot_seq([x1, .., xn],[y1, .., yn])", width - 300, 50, 1000);
+  c.fillText("circle(x,y,r)", width - 300, 80, 1000);
+  c.fillText("line(x1,y1,x2,y2)", width - 300, 110, 1000);
+  c.fillText("set_scale(x)", width - 300, 140, 1000);
+  c.fillText("clear:F5", width - 300, 170, 1000);
+}
+
+//------------------------------------------------------------//
+
+//軸とかを描く
+window.addEventListener('DOMContentLoaded', _first_init);
+
+
+</script>
+
+</head>
+<body>
+<!--キャンバスの準備（1）-->
+<canvas id="cv" width="3200" height="1600">
+  <!--Canvas機能に対応していないブラウザへの備え（2）-->
+  Canvas機能に対応したブラウザでアクセスしてください。
+</canvas>
+</body>
+</html>
