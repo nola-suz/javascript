@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>HTML5 TIPS</title>
+<!--キャンバスの背景色／枠線を指定（3）-->
+<style>
+#cv {
+  background-color: #FFF;
+  border: 1px solid black;
+}
+</style>
+<script>
+var x_axis = 200;
+var y_axis = 200;
+var height = 1600;
+var width  = 1600;
+
+function dot(x,y){
+  window.addEventListener('DOMContentLoaded',_circle(x,y,5,true));  
+}
+function cir(x,y,r){
+  window.addEventListener('DOMContentLoaded',_circle(x,y,r,false));  
+}
+function line(x1,y1,x2,y2){
+  window.addEventListener('DOMContentLoaded',_line(x1,y1,x2,y2));  
+}
+function _circle(x,y,r,f) {
+  var cv = document.querySelector('#cv');
+  var c = cv.getContext('2d');
+  c.strokeStyle = 'black';
+  c.fillStyle = 'black';
+  c.beginPath();
+  c.arc(x + x_axis, height - y_axis - y, r, 0, 2 * Math.PI, false);
+  if(f) c.fill();
+  else c.stroke();
+}
+function _line(x1,y1,x2,y2){
+  var cv = document.querySelector('#cv');
+  var c = cv.getContext('2d');
+  c.strokeStyle = 'black';
+  c.beginPath();
+  c.moveTo(x1 + x_axis, height - y_axis - y1);
+  c.lineTo(x2 + x_axis, height - y_axis - y2);
+  c.stroke();
+}
+function _first_init(){
+  var cv = document.querySelector('#cv');
+  var c = cv.getContext('2d');
+  c.strokeStyle = 'Red';
+  c.beginPath();
+  c.moveTo(x_axis,0);
+  c.lineTo(x_axis,height);
+  c.stroke();
+  c.beginPath();
+  c.moveTo(0,height - y_axis);
+  c.lineTo(width,height - y_axis);
+  c.stroke();
+  c.fillStyle = "red";
+  c.font = "30px 'ＭＳ ゴシック'";
+  c.textAlign = "left";
+  c.textBaseline = "top";
+
+  c.fillText("y", x_axis - 30, 10, 20);
+  c.fillText("x", width - 20, height - y_axis + 20, 20);
+  c.fillText("O", x_axis - 30, height - y_axis + 20, 20);
+  c.fillStyle = "blue";
+  c.fillText("コンソールを開く : Alt + Command + j", width + 300, height / 2 - 300, 1000);
+  c.fillText("dot(x,y)", width - 300, 20, 1000);
+  c.fillText("cir(x,y,r)", width - 300, 50, 1000);
+  c.fillText("line(x1,y1,x2,y2)", width - 300, 80, 1000);
+}
+window.addEventListener('DOMContentLoaded', _first_init);
+
+
+</script>
+
+</head>
+<body>
+<!--キャンバスの準備（1）-->
+<canvas id="cv" width="3200" height="1600">
+  <!--Canvas機能に対応していないブラウザへの備え（2）-->
+  Canvas機能に対応したブラウザでアクセスしてください。
+</canvas>
+</body>
+</html>
