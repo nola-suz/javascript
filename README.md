@@ -3,7 +3,7 @@
 
 使い方
 
-1. chromeで http://nola_suz.github.io/javascript にアクセスします．
+1. chromeで http://nola-suz.github.io/javascript にアクセスします．
 2. JavaScriptコンソールを開きます.(macなら Alt + Commond + j)
 3. コンソールにdot(1,1)とか打ち込みます．
 4. 終わり
