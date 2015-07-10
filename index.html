@@ -104,6 +104,8 @@ function _first_init(){
   c.fillText("y", x_axis - 30, 10, 20);
   c.fillText("x", width - 20, height - y_axis + 20, 20);
   c.fillText("O", x_axis - 30, height - y_axis + 20, 20);
+  c.fillStyle = "blue";
+  c.fillText("コンソールを開く(chrome) : Alt + Command + j", width + 300, height / 2 - 300, 1000);
 }
 function _help(){
   var cv = document.querySelector('#cv');
@@ -112,7 +114,6 @@ function _help(){
   c.font = "30px 'ＭＳ ゴシック'";
   c.textAlign = "left";
   c.textBaseline = "top";
-  c.fillText("コンソールを開く(chrome) : Alt + Command + j", width + 300, height / 2 - 300, 1000);
   c.fillText("dot(x,y)", width - 300, 20, 1000);
   c.fillText("dot_seq([x1, .., xn],[y1, .., yn])", width - 300, 50, 1000);
   c.fillText("circle(x,y,r)", width - 300, 80, 1000);
